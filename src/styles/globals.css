@@ -1,0 +1,54 @@
+:root {
+    --background: #000;
+    --foreground: #fff;
+
+    --dialog-error: #7f2a2a42;
+    --dialog-success: #2e752742;
+    --dialog-warning: #ff0000;
+
+    --sidebar-width: 74px;
+    --sidebar-width-expanded: 225px;
+
+    --mobile-header-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+html {
+    overscroll-behavior: none;
+}
+
+body {
+    background: #1c201c;
+    overscroll-behavior: none;
+}
+
+main {
+    color: var(--foreground);
+}
+
+aside,
+header {
+    border: 1px solid;
+}

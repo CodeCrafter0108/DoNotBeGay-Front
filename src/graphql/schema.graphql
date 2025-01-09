@@ -1,0 +1,165 @@
+# Models
+type Listing {
+    id: String!
+    inTournament: String!
+    tokenOwner: String!
+    tokenPosition: String!
+    blockNumber: String!
+    blockTimestamp: String!
+    transactionHash: String!
+    token: Token!
+}
+
+type Delisting {
+    id: String!
+    tokenOwner: User!
+    inTournament: String!
+    tokenPosition: String!
+    token: Token!
+    blockNumber: String!
+    blockTimestamp: String!
+    transactionHash: String!
+}
+
+type Pair {
+    id: String!
+    createdAtBlockNumber: String!
+    createdAtTimestamp: String!
+    token0: Token!
+    token1: Token!
+    reserve0: String!
+    reserve1: String!
+    token0Price: String!
+    token1Price: String!
+    totalSupply: String!
+    txCount: String!
+    volumeToken0: String!
+    volumeToken1: String!
+    volumeUSD: String!
+    swaps: [Swap]!
+}
+
+type Swap {
+    id: String!
+    amount0In: String!
+    amount0Out: String!
+    amount1In: String!
+    amount1Out: String!
+    amountUSD: String!
+    from: String!
+    logIndex: String!
+    sender: String!
+    timestamp: String!
+    to: String!
+    pair: Pair!
+    user: User!
+}
+
+type Token {
+    id: String!
+    decimals: String!
+    imageUrl: String!
+    name: String!
+    position: String!
+    symbol: String!
+    totalLiquidityUSD: String!
+    totalSupply: String!
+    tradeVolume: String!
+    tradeVolumeUSD: String!
+    txCount: String!
+    priceETH: String!
+    priceUSD: String!
+    tournament: Tournament!
+    tournamentId: String!
+    tokenDayData(first: Int, orderBy: String, orderDirection: String): [TokenDayData]!
+    tokenHourData(first: Int, orderBy: String, orderDirection: String): [TokenHourData]!
+    tokenPriceDayData(first: Int, orderBy: String, orderDirection: String): [TokenPriceDayData]!
+    tokenPriceHourData(first: Int, orderBy: String, orderDirection: String): [TokenPriceHourData]!
+}
+
+type User {
+    id: String!
+    listings: [Listing]!
+    delistings: [Delisting]
+    tokens: [Token]!
+    swaps: [Swap]!
+    stakingAmount: String!
+    tradingVolume: String!
+}
+
+type Tournament {
+    id: String!
+    date: String!
+    swaps: [Swap]
+    tokens: [Token]!
+    users: [User]!
+    pairs: [Pair]!
+}
+
+type TokenDayData {
+    id: String!
+    date: Int!
+    token: Token!
+    dailyVolumeUSD: String!
+    dailyTxns: String!
+}
+
+type TokenHourData {
+    id: String!
+    date: Int!
+    token: Token!
+    hourlyVolumeUSD: String!
+    hourlyTxns: String!
+}
+
+type TokenPriceHourData {
+    id: String!
+    date: Int!
+    token: Token!
+    priceETH: String!
+    priceUSD: String!
+}
+
+type TokenPriceDayData {
+    id: String!
+    date: Int!
+    token: Token!
+    priceETH: String!
+    priceUSD: String!
+}
+
+input ListingFilter {
+    tournamentId: String!
+}
+
+input TokensFilter {
+    tournament: String
+    timestamp: String
+    id_in: [String!]
+}
+
+input UsersFilter {
+    tournamentId: String!
+}
+
+input TokenFilter {
+    tournament: String!
+    isNative: Boolean
+}
+
+input PairFilter {
+    tournamentId: String!
+}
+
+type Query {
+    listing(id: String!): Listing
+    listings(where: ListingFilter): [Listing]
+    tokens(where: TokensFilter): [Token]
+    token(id: String!): Token
+    user(id: String!): User
+    users(where: UsersFilter): [User]
+    tournament(id: String!): Tournament
+    tournaments: [Tournament]
+    pair(id: String!): Pair
+    pairs(where: PairFilter): [Pair]
+}

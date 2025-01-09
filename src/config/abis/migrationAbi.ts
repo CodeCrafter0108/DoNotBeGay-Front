@@ -1,0 +1,81 @@
+export const migrationAbi = [
+    { inputs: [{ internalType: 'address', name: '_tournamentManager', type: 'address' }], stateMutability: 'nonpayable', type: 'constructor' },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: 'address', name: 'fromToken', type: 'address' },
+            { indexed: true, internalType: 'address', name: 'toToken', type: 'address' },
+            { indexed: true, internalType: 'uint256', name: 'amount', type: 'uint256' },
+        ],
+        name: 'MigrationStarted',
+        type: 'event',
+    },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: 'address', name: 'previousOwner', type: 'address' },
+            { indexed: true, internalType: 'address', name: 'newOwner', type: 'address' },
+        ],
+        name: 'OwnershipTransferred',
+        type: 'event',
+    },
+    { anonymous: false, inputs: [{ indexed: false, internalType: 'address', name: 'account', type: 'address' }], name: 'Paused', type: 'event' },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: 'address', name: 'fromToken', type: 'address' },
+            { indexed: true, internalType: 'address', name: 'toToken', type: 'address' },
+            { indexed: true, internalType: 'uint256', name: 'amount', type: 'uint256' },
+        ],
+        name: 'TokenMigrated',
+        type: 'event',
+    },
+    { anonymous: false, inputs: [{ indexed: false, internalType: 'address', name: 'account', type: 'address' }], name: 'Unpaused', type: 'event' },
+    {
+        inputs: [
+            { internalType: 'address', name: '_oldToken', type: 'address' },
+            { internalType: 'address', name: '_newToken', type: 'address' },
+            { internalType: 'uint256', name: '_amount', type: 'uint256' },
+        ],
+        name: 'initializeMigration',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    { inputs: [{ internalType: 'address', name: '_oldToken', type: 'address' }], name: 'migration', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    { inputs: [], name: 'owner', outputs: [{ internalType: 'address', name: '', type: 'address' }], stateMutability: 'view', type: 'function' },
+    { inputs: [], name: 'pause', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    { inputs: [], name: 'paused', outputs: [{ internalType: 'bool', name: '', type: 'bool' }], stateMutability: 'view', type: 'function' },
+    { inputs: [], name: 'renounceOwnership', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    { inputs: [{ internalType: 'address', name: '_newManager', type: 'address' }], name: 'setTournamentManager', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    {
+        inputs: [{ internalType: 'address', name: '', type: 'address' }],
+        name: 'tournamentMigrationMap',
+        outputs: [{ internalType: 'address', name: '', type: 'address' }],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    { inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }], name: 'transferOwnership', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    { inputs: [], name: 'unPause', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+    {
+        inputs: [
+            { internalType: 'address', name: 'token', type: 'address' },
+            { internalType: 'uint256', name: 'amount', type: 'uint256' },
+            { internalType: 'address', name: 'receiver', type: 'address' },
+        ],
+        name: 'withdrawERC20',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            { internalType: 'uint256', name: 'amount', type: 'uint256' },
+            { internalType: 'address', name: 'receiver', type: 'address' },
+        ],
+        name: 'withdrawEther',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+] as const;
