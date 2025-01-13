@@ -24,7 +24,6 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
 
     try {
         const { data } = await graphClient.query<{ tournaments: Tournament[] }>(params);
-        console.log("🚀 ~ queryFn ~ data:", data)
         const tournaments = data?.tournaments || [];
         const calls = tournaments.map((tournament) => {
             return {
@@ -35,9 +34,7 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
                 args: [BigInt(tournament.id)],
             };
         }) as ContractCall<[bigint]>[];
-        console.log("🚀 ~ calls ~ calls:", calls)
-        const results = (await readContracts(wagmiConfig, { contracts: calls }))  //.filter(({ result }) => result);
-        console.log("🚀 ~ queryFn ~ results:", results)
+        const results = (await readContracts(wagmiConfig, { contracts: calls })).filter(({ result }) => result);
 
         return results
             .map(({ result }, i) => {
