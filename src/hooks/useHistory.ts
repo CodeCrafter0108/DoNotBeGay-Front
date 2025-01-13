@@ -24,6 +24,7 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
 
     try {
         const { data } = await graphClient.query<{ tournaments: Tournament[] }>(params);
+        console.log("🚀 ~ queryFn ~ data:", data)
         const tournaments = data?.tournaments || [];
 
         const calls = tournaments.map((tournament) => {

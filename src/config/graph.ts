@@ -7,6 +7,7 @@ export const LAUNCHPAD_GRAPH: Record<number, string> = {
 
 export const getGraphClient = (chainId: ChainId) => {
     const uri = LAUNCHPAD_GRAPH[chainId];
+    console.log("🚀 ~ getGraphClient ~ uri:", uri)
 
     return new ApolloClient({
         uri,
