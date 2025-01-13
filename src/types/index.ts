@@ -20,6 +20,7 @@ export type Theme = {
     green: string;
     greenLight: string;
     yellow: string;
+    black: string;
 };
 
 export enum AmountType {

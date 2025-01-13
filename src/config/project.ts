@@ -4,6 +4,7 @@ export const config: ProjectConfig = {
     theme: {
         bg: '#1C201C',
         white: '#FFFFFF',
+        black: '#000000',
         gray: '#9C9C9C',
         gray600: '#FFFFFF60',
         accent: '#FDC238',

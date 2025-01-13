@@ -11,6 +11,7 @@ export interface BoxProps {
     backgroundColor?: string;
     overflow?: string;
     pixelatedCorners?: PixelatedCorner[];
+    style?: React.CSSProperties;
 }
 
 export type BoxWrapperProps = Partial<BoxProps>;

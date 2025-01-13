@@ -19,7 +19,7 @@ const Wrapper = styled.div<ButtonWrapperProps>`
 
 export const PrimaryWrapper = styled(Wrapper)`
     background: ${({ theme }) => theme.accent};
-    color: ${({ theme }) => theme.bg};
+    color: ${({ theme }) => theme.black};
     border: 1px solid transparent;
 
     &:hover {
@@ -29,7 +29,7 @@ export const PrimaryWrapper = styled(Wrapper)`
 
 export const SecondaryWrapper = styled(Wrapper)`
     background: ${({ theme, active }) => (active ? theme.accent : theme.bg)};
-    color: ${({ theme, active }) => (active ? theme.bg : theme.accent)};
+    color: ${({ theme, active }) => (active ? theme.black : theme.accent)};
     border: 1px solid ${({ theme }) => theme.accent};
 
     &:hover {

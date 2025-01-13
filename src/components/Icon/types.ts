@@ -56,6 +56,7 @@ export type TokenIconProps = BaseIconProps & {
 export type TokenPrimaryProps = BaseIconProps & {
     path: string;
     size?: number;
+    sizeWrapperIcon?: number;
     state: PairState;
 };
 
