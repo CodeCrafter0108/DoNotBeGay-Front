@@ -37,6 +37,7 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
         }) as ContractCall<[bigint]>[];
 
         const results = (await readContracts(wagmiConfig, { contracts: calls })).filter(({ result }) => result);
+        console.log("🚀 ~ queryFn ~ results:", results)
 
         return results
             .map(({ result }, i) => {
