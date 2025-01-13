@@ -30,6 +30,7 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
             return {
                 address: managerAddr,
                 abi: managerAbi,
+                chainId,
                 functionName: 'getWinningToken',
                 args: [BigInt(tournament.id)],
             };
