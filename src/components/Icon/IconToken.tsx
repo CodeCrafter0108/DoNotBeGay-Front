@@ -6,11 +6,11 @@ import WrapperIconPrimary from './wrappers/token-wrapper-primary.svg';
 import { IconTokenPrimaryWrapper, IconTokenRemoteWrapper } from './styles';
 import { ImageWithFallback } from '@/components/Image';
 
-const IconTokenPrimary: React.FC<TokenPrimaryProps> = ({ state, path, size = 35 }) => {
+const IconTokenPrimary: React.FC<TokenPrimaryProps> = ({ state, path, size = 35, sizeWrapperIcon = 65 }) => {
     return (
         <Flex alignItems="center" justifyContent="center">
             <IconTokenPrimaryWrapper state={state}>
-                <WrapperIconPrimary />
+                <WrapperIconPrimary width={sizeWrapperIcon} height={sizeWrapperIcon} />
             </IconTokenPrimaryWrapper>
             <Absolute>
                 <ImageWithFallback size={size} src={`${path}`} radius="50%" />
