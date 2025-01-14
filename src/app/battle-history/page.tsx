@@ -19,7 +19,6 @@ export default function BattleHistory() {
     const { theme } = useConfig();
     const { chainId } = useActiveChainId();
     const { data, isLoading } = useHistory({ chainId });
-    console.log("🚀 ~ BattleHistory ~ data:", data)
 
     const [search, setSearch] = useState('');
 

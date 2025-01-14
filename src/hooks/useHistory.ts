@@ -25,16 +25,15 @@ const queryFn = async ({ chainId }: HistoryQuery): Promise<IHistoryItem[] | unde
     try {
         const { data } = await graphClient.query<{ tournaments: Tournament[] }>(params);
         const tournaments = data?.tournaments || [];
-
         const calls = tournaments.map((tournament) => {
             return {
                 address: managerAddr,
                 abi: managerAbi,
+                chainId,
                 functionName: 'getWinningToken',
                 args: [BigInt(tournament.id)],
             };
         }) as ContractCall<[bigint]>[];
-
         const results = (await readContracts(wagmiConfig, { contracts: calls })).filter(({ result }) => result);
 
         return results

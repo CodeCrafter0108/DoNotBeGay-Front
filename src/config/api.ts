@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import https from 'https';
 import { FilePreSaveDto, FileSaveDto, HealthResponse } from '@/types/api';
 
 class ApiClient {
@@ -11,7 +12,12 @@ class ApiClient {
         }
 
         this.baseURL = baseURL;
-        this.client = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' } });
+
+        const httpsAgent = new https.Agent({
+            rejectUnauthorized: false,
+        });
+
+        this.client = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' }, httpsAgent });
 
         this.client.interceptors.response.use(
             (response) => response,
