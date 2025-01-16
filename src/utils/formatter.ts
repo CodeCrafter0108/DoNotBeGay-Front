@@ -2,10 +2,37 @@ import { Address, formatUnits, parseUnits } from 'viem';
 import { MAX_PARTICIPANTS } from '@/config/constants';
 import { SlippageType } from '@/app/tournament/components/TokenSwap/types';
 
+export type FormatType = undefined | string;
+
 export class Formatter {
     static formatAddress = (address: Address | string | undefined) => {
         if (!address) return '';
         return `${address.slice(0, 6)}...${address.slice(-4)}`;
+    };
+
+    static genMinAmount = (digits: number): number => {
+        if (digits < 1) return 1;
+        return Number(`0.${''.padEnd(digits - 1, '0')}1`);
+    };
+
+    static formatPrice = (amount: number | undefined | null, digits: number = 3): FormatType => {
+        let result: FormatType;
+
+        if (amount !== undefined && amount !== null) {
+            const minAmount: number = this.genMinAmount(digits);
+            if (amount && amount < minAmount) {
+                result = `<$${minAmount}`;
+            } else {
+                result = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    maximumFractionDigits: digits,
+                    minimumFractionDigits: 0,
+                }).format(amount);
+            }
+        }
+
+        return result;
     };
 
     static formatNumber = (num: number | string | undefined, digits = 2) => {

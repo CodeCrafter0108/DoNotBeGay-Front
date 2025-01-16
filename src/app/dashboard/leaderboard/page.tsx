@@ -12,12 +12,14 @@ import { Input } from '@/components/Input';
 import { useActiveChainId } from '@/hooks/useActiveChainId';
 import { useLeaderboard } from '@/hooks/useLeaderboard';
 import Image from 'next/image';
+import { useDebounce } from 'use-debounce';
 
 export default function Leaderboard() {
     const { chainId } = useActiveChainId();
     const { data: leaderboard } = useLeaderboard({ chainId });
 
     const [search, setSearch] = useState('');
+    const [debouncedSearch] = useDebounce(search, 300);
     const [showMemes] = useLocalStorage(LOCAL_STORAGE_KEYS.SHOW_MEMES);
 
     const profiles = useMemo(() => {
@@ -38,7 +40,7 @@ export default function Leaderboard() {
                             </Flex>
 
                             <Flex paddingTop="20px">
-                                <Table profiles={profiles} />
+                                <Table profiles={profiles} search={debouncedSearch} />
                             </Flex>
 
                             {showMemes && (
