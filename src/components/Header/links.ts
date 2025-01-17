@@ -1,31 +1,32 @@
 import { ModalsType } from '@/contexts/ModalContext';
 import { SidebarItem } from '@/components/Header/types';
+import { AppRoutes } from '@/types';
 
 export const menuItems = [
     {
         icon: 'dashboard',
         text: 'Dashboard',
-        link: '/dashboard/profile',
+        link: `${AppRoutes.DASHBOARD}/profile`,
     },
     {
         icon: 'web',
         text: 'Explorer',
-        link: '/token-explorer',
+        link: AppRoutes.TOKEN_EXPLORER,
     },
     {
         icon: 'money',
         text: 'Tournament',
-        link: '/tournament',
+        link: AppRoutes.TOURNAMENT,
     },
     {
         icon: 'prize',
         text: 'History',
-        link: '/battle-history',
+        link: AppRoutes.BATTLE_HISTORY,
     },
     {
         icon: 'history',
         text: 'Launcher',
-        link: '/launcher',
+        link: AppRoutes.LAUNCHER,
     },
 ] as SidebarItem[];
 
@@ -38,13 +39,16 @@ export const socialItems = [
     {
         icon: 'discord',
         text: 'Discord',
+        link: AppRoutes.DISCORD,
     },
     {
         icon: 'x',
         text: 'Twitter',
+        link: AppRoutes.DASHBOARD,
     },
     {
         icon: 'docs',
         text: 'Documentation',
+        link: AppRoutes.DOCS,
     },
 ] as SidebarItem[];

@@ -35,3 +35,16 @@ export enum PairState {
     WIN,
     LOSE,
 }
+
+export enum AppRoutes {
+    LAUNCHER = '/launcher',
+    TOURNAMENT = '/tournament',
+    TOKEN_EXPLORER = '/token-explorer',
+    BATTLE_HISTORY = '/battle-history',
+    DASHBOARD = '/dashboard',
+    MEMEDEX = '/memdex',
+    TELEGRAM = '/telegram',
+    DISCORD = '/discord',
+    TWITTER = '/twitter',
+    DOCS = '/docs',
+}

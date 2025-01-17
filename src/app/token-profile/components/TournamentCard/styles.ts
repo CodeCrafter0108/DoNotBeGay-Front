@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import Planet from './icons/planetIcon.svg';
+import { Breakpoints } from '@/styles/breakpoints';
 
 export const Wrapper = styled.div`
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         width: 100%;
         max-width: 753px;
         height: 100%;
@@ -19,7 +20,7 @@ export const TitleWrapper = styled.div`
     position: relative;
     padding-bottom: 40px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         padding-top: 40px;
         padding-bottom: 0;
     }
@@ -49,7 +50,7 @@ export const Badge = styled.div<{ isRotate?: boolean }>`
     align-items: center;
     justify-content: center;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         height: 34px;
         width: 200px;
         font-size: 18px;
@@ -57,7 +58,7 @@ export const Badge = styled.div<{ isRotate?: boolean }>`
 `;
 
 export const MouseImage = styled(Image)`
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         position: absolute;
         top: 25px;
         right: 50px;
@@ -71,7 +72,7 @@ export const FrogImage = styled(Image)`
     bottom: 10px;
     left: 10px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         width: 95px;
         height: 87px;
     }
@@ -83,7 +84,7 @@ export const DonationImage = styled(Image)`
     left: 100%;
     transform: translateX(-100%);
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         width: 90px;
         height: 88px;
     }
@@ -95,7 +96,7 @@ export const LinkWrapper = styled.div`
     flex-direction: column;
     padding-bottom: 12px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         flex-direction: row;
         padding-bottom: 24px;
     }
@@ -109,7 +110,7 @@ export const StyledLink = styled(Link)`
         font-size: 14xpx;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         span {
             font-size: 18px;
         }
@@ -120,7 +121,7 @@ export const PlanetIcon = styled(Planet)`
     width: 16px;
     height: 16px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         width: 24px;
         height: 24px;
     }
@@ -133,7 +134,7 @@ export const Description = styled.p`
     padding: 0 12px;
     font-size: 14px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         font-size: 16px;
     }
 `;

@@ -12,7 +12,7 @@ import { Form } from './components/Form';
 import { Chart } from './components/Chart';
 import {PageHeader, PageContent } from './styles';
 
-export default function Tournament() {
+export default function TokenProfile() {
     return (
         <Container>
             <motion.div {...springToBottom}>

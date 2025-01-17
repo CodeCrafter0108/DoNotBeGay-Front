@@ -1,3 +1,4 @@
+import { Breakpoints } from '@/styles/breakpoints';
 import ReactEcharts from 'echarts-for-react';
 import styled from 'styled-components';
 
@@ -8,7 +9,7 @@ export const StyledChart = styled(ReactEcharts)`
     padding: 25px 0 16px 0;
     background-color: ${({ theme }) => theme.bg};
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${Breakpoints.lg}) {
         min-height: 100%;
     }
 `;
