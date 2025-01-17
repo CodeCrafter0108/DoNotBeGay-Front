@@ -1,48 +1,48 @@
-import React from 'react';
 import { Flex, Grid, Text } from '@/styles/global';
 import { useConfig } from '@/contexts/ConfigContext';
 import { Show } from '@/components/Show';
 
-import { SortSelector } from '@/components/SortSelector';
+import { SortSelector, SortType } from '@/components/SortSelector';
 import { Breakpoints } from '@/styles/breakpoints';
 import { Formatter } from '@/utils';
 import { TableWrapper, TableWrapperContent, TableWrapperItem } from './styles';
 import { Box } from '@/components/Box';
+import { useTableSort } from '@/hooks/useTableSort';
 
 const mockData = [
     {
-        data: '40s ago',
+        date: '40s ago',
         type: 'Buy',
-        usd: '$1,254.01',
-        price: '$0.01',
+        usd: 254.01,
+        price: 0.01,
         txn: '0xd2533d7C809734d69C63DE4f4a5052a0FfC63E72',
     },
     {
-        data: '40s ago',
+        date: '40s ago',
         type: 'Sell',
-        usd: '$1,254.01',
-        price: '$0.01',
+        usd: 1004.01,
+        price: 0.03,
         txn: '0xd2533d7C809734d69C63DE4f4a5052a0FfC63E72',
     },
     {
-        data: '40s ago',
+        date: '40s ago',
         type: 'Buy',
-        usd: '$1,254.01',
-        price: '$0.01',
+        usd: 1294.01,
+        price: 1,
         txn: '0xd2533d7C809734d69C63DE4f4a5052a0FfC63E72',
     },
     {
-        data: '40s ago',
+        date: '40s ago',
         type: 'Sell',
-        usd: '$1,254.01',
-        price: '$0.01',
+        usd: 1214.01,
+        price: 0.23,
         txn: '0xd2533d7C809734d69C63DE4f4a5052a0FfC63E72',
     },
 ];
 
 export const TransactionTable: React.FC = () => {
     const { theme } = useConfig();
-
+    const { sortedData, handleSortChange, sortConfig } = useTableSort({ data: mockData });
     return (
         <Box padding="30px 40px" style={{ gridArea: 'transactions' }}>
             <Flex flexDirection={'column'} gap={20}>
@@ -55,15 +55,15 @@ export const TransactionTable: React.FC = () => {
                                     Date
                                 </Text>
                             </Flex>
-                            <SortSelector text="Type" />
-                            <SortSelector text="USD" />
-                            <SortSelector text="Price" />
-                            <SortSelector text="TXN" />
+                            <SortSelector text="Type" value={sortConfig.key === 'type' ? sortConfig.direction : SortType.NONE} onChange={() => handleSortChange('type')} />
+                            <SortSelector text="USD" value={sortConfig.key === 'usd' ? sortConfig.direction : SortType.NONE} onChange={() => handleSortChange('usd')} />
+                            <SortSelector text="Price" value={sortConfig.key === 'price' ? sortConfig.direction : SortType.NONE} onChange={() => handleSortChange('price')} />
+                            <SortSelector text="TXN" value={sortConfig.key === 'txn' ? sortConfig.direction : SortType.NONE} onChange={() => handleSortChange('txn')} />
                         </TableWrapperContent>
                     </Show.Toggle>
 
                     <Grid gap={0}>
-                        {mockData.map((transaction, index) => (
+                        {sortedData.map((transaction, index) => (
                             <TableWrapperItem key={index}>
                                 <Flex alignItems="center" justifyContent="space-between">
                                     <Show.Toggle showBelow={Breakpoints.md}>
@@ -71,7 +71,7 @@ export const TransactionTable: React.FC = () => {
                                             Date
                                         </Text>
                                     </Show.Toggle>
-                                    <Text fontSize="18px">{transaction.data}.</Text>
+                                    <Text fontSize="18px">{transaction.date}.</Text>
                                 </Flex>
 
                                 <Flex alignItems="center" justifyContent="space-between">
@@ -91,7 +91,7 @@ export const TransactionTable: React.FC = () => {
                                             USD
                                         </Text>
                                     </Show.Toggle>
-                                    <Text fontSize="18px">{transaction.usd}</Text>
+                                    <Text fontSize="18px">{Formatter.formatPrice(transaction.usd)}</Text>
                                 </Flex>
 
                                 <Flex justifyContent="space-between">
@@ -101,7 +101,7 @@ export const TransactionTable: React.FC = () => {
                                         </Text>
                                     </Show.Toggle>
 
-                                    <Text fontSize="18px">{transaction.price}</Text>
+                                    <Text fontSize="18px">{Formatter.formatPrice(transaction.price)}</Text>
                                 </Flex>
 
                                 <Flex justifyContent="space-between">

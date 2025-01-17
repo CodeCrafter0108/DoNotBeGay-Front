@@ -18,6 +18,7 @@ import { useBackground } from '@/hooks/useBackground';
 import NextImage from 'next/image';
 import { Show } from '@/components/Show';
 import { Breakpoints } from '@/styles/breakpoints';
+import { usePathname } from 'next/navigation';
 
 type Props = {
     children: ReactNode;
@@ -51,6 +52,7 @@ const Background: React.FC = () => {
 };
 
 export function Providers({ children, initialState }: Props) {
+    const pathname = usePathname();
     return (
         <WagmiProvider config={config} initialState={initialState}>
             <QueryClientProvider client={queryClient}>
@@ -59,14 +61,18 @@ export function Providers({ children, initialState }: Props) {
 
                     <DialogProvider>
                         <ModalProvider>
-                            <Show.Toggle showAbove={Breakpoints.lg}>
-                                <Header.Desktop />
-                                <Header.Sidebar />
-                            </Show.Toggle>
+                            {pathname !== '/' && (
+                                <Show.Toggle showAbove={Breakpoints.lg}>
+                                    <Header.Desktop />
+                                    <Header.Sidebar />
+                                </Show.Toggle>
+                            )}
 
-                            <Show.Toggle showBelow={Breakpoints.lg}>
-                                <Header.Mobile />
-                            </Show.Toggle>
+                            {pathname !== '/' && (
+                                <Show.Toggle showBelow={Breakpoints.lg}>
+                                    <Header.Mobile />
+                                </Show.Toggle>
+                            )}
 
                             <Modals />
                             {children}

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Breakpoints } from '@/styles/breakpoints';
+import Image from 'next/image';
 
 export const SupplyBox = styled.div`
     height: 48px;
