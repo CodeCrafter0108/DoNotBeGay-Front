@@ -38,7 +38,6 @@ export const Content = styled.div`
     @media screen and (min-width: ${Breakpoints.lg}) {
         justify-content: flex-end;
         gap: 16px;
-
         margin-top: 110px;
         height: 135px;
     }
